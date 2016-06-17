@@ -2,7 +2,7 @@
 ## Overview
 Hello awesome candidate! You will be building the amazing hot sauce list. The list will contain rows of hot sauces that shows a picture and title in each row. Each row will be clickable and navigate you to that rows hot sauce details view. The details view will show the picture, title, description, and extra details about the hot sauce. The goal of this project is to see how far you can go. We understand you may not be familiar with some of the required technologies and that’s okay. We want you to do the best you can.
 
-We will be providing a mockup that you will be basing your project on. The mockup itself contains a design for the list page and the details page. We will also provide a link to a Github project with a index.html with references to ReactJS and a hotsauce.css file.
+We will be providing two mockup files that you will be basing your project on. The mockup itself contains a design for the list page and the details page. In this project is already a sample index.html file with some starter code to get going.
 
 During the project you will be using a combination of JavaScript, ReactJS, JSON, CSS and HTML to construct the list.  All the data for the list will come from hotsauces.json and contains data for the list and for the details page.
 
