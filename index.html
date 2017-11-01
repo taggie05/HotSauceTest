@@ -20,19 +20,152 @@
 
         We do recommend you write all the code here because of cross orgigin scripting issues. If you do want to place this code in a seperate file, it will require you use a server environment and access this page via http://localhost/HostSauceTest/ or something similar.
       */
-
-      var Application = React.createClass({
+      var HotSauceInformation = React.createClass({
         render: function() {
+          var props = this.props;
+          var sauces = props.objectStateIndex();
           return (
-            <p>
-              Hello applicant!
-            </p>
+            <div id="information-overload">
+              <div className="col-6">
+                <div className="hot-title">
+                  <p onClick={ props.handleClick }  style={{'color':'red', 'marginTop': '-20px','font-size': '17px;'}}>&lt; Back to Hot Sauce list </p>
+                  <h1>{ props.filterData('title')[sauces] }</h1>
+                </div>
+                <div className="hot-img">
+                  <img src={ props.filterData('imageURL')[sauces] } />
+                </div>
+              </div>
+              <div className="col-3">
+                <p className="hot-desciption"> { props.filterData('description')[sauces] } </p>
+              </div>
+            </div>
+          )
+        }
+      });
+      var ListItems = React.createClass({
+        localClick: function(datamind) {
+          var photos = datamind.target.getAttribute('src');
+          var list = this.props.objectStateLists(),
+            len = list.length,
+            index;
+          for (var i = 0; i < len; i++) {
+            if (list[i].imageURL === photos) {
+              index = i;
+            }
+          }
+          this.setState({selectedIndex: index}, function () {
+            this.props.updateIndex(index);
+            this.props.handleClick();
+          });
+        },
+        render: function () {
+          var len = this.props.objectStateLists().length,
+              i = 0,
+              listArray = [],
+              props = this.props;
+          for (i = 0; i < len; i++) {
+            listArray.push(
+              <div key={i} className="item" onClick={ this.localClick } >
+                  <div className="item-img-container">
+                    <img className="item-img" src={ props.filterData('imageURL')[i] } />
+                  </div>
+                  <div className="sub-container">
+                    <h2> { props.filterData('title')[i] } </h2>
+                    <p className="sub-title"> { props.filterData('subtitle')[i] } </p>
+                  </div>
+              </div>
+            );
+          }
+          return (
+            <div>
+              <h1 className='title-front'>HOT SAUCE LIST</h1>
+              { listArray }
+            </div>
+          )
+        }
+      });
+      var App = React.createClass({
+        getInitialState: function() {
+          return {
+            list: [],
+            route: 'ListItems',
+            clickedElemIndex: null
+          }
+        },
+        componentWillMount: function() {
+          this.jxhr = null;
+        },
+        componentDidMount: function () {
+          var self = this;
+          var request = new XMLHttpRequest();
+          request.open('GET', 'https://raw.githubusercontent.com/taggie05/HotSauceTest/master/hotsauces.json', true);
+          request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+              var data = JSON.parse(request.responseText);
+              self.setState({ list: data.list });
+            } else {
+              console.log('Server error');
+            }
+          };
+          request.onerror = function() {
+            console.log('conenction error');
+          };
+          request.send();
+        },
+        filterData: function (name) {
+          var list = this.state.list;
+          var values = [];
+          for (var i = 0; i < list.length; i++) {
+            values.push( list[i][name] );
+          }
+          return values;
+        },
+        objectStateLists: function() {
+          return this.state.list;
+        },
+        updateIndex: function (index) {
+          this.setState({ clickedElemIndex: index });
+        },
+        objectStateIndex: function () {
+          return this.state.clickedElemIndex;
+        },
+        handleClick: function () {
+          
+          if (this.state.route === 'ListItems') {
+            this.setState({
+              route: 'HotSauceInformation'
+            });
+          } else {
+            this.setState({route: 'ListItems'});
+          }
+          render();
+        },
+        render: function() {
+          var Child;
+          if (this.state.route === 'ListItems') {
+            Child = <ListItems 
+                filterData = { this.filterData } 
+                objectStateLists = { this.objectStateLists }
+                handleClick = { this.handleClick } 
+                updateIndex = { this.updateIndex } 
+            />
+          } else {
+            Child = <HotSauceInformation 
+                filterData = { this.filterData } 
+                handleClick = { this.handleClick } 
+                objectStateIndex = { this.objectStateIndex }
+            />
+          }
+          return (
+            <div>
+              { Child }
+            </div>
           );
         }
       });
-
-      ReactDOM.render(
-        <Application />,
+      
+       ReactDOM.render(
+        <App />,
         document.getElementById('application')
       );
     </script>
