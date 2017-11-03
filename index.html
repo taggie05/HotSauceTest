@@ -9,7 +9,7 @@
   <body>
 
     <!-- Application div -->
-    <div id="application"></div>
+    <div id="application" class="app"></div>
 
     <script src="https://fb.me/react-15.1.0.min.js"></script>
     <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
@@ -25,18 +25,18 @@
           var props = this.props;
           var sauces = props.objectStateIndex();
           return (
-            <div id="information-overload">
-              <div className="col-6">
-                <div className="hot-title">
+            <div className="HotSauceInformation">
+              <div >
+                <div className="HotSauce-Title">
                   <p onClick={ props.handleClick }  style={{'color':'red', 'marginTop': '-20px','font-size': '17px;'}}>&lt; Back to Hot Sauce list </p>
                   <h1>{ props.filterData('title')[sauces] }</h1>
                 </div>
-                <div className="hot-img">
+                <div className="HotSauce-Image">
                   <img src={ props.filterData('imageURL')[sauces] } />
                 </div>
               </div>
-              <div className="col-3">
-                <p className="hot-desciption"> { props.filterData('description')[sauces] } </p>
+              <div>
+                <p className="HotSauce-Description"> { props.filterData('description')[sauces] } </p>
               </div>
             </div>
           )
@@ -65,11 +65,11 @@
               props = this.props;
           for (i = 0; i < len; i++) {
             listArray.push(
-              <div key={i} className="item" onClick={ this.localClick } >
-                  <div className="item-img-container">
-                    <img className="item-img" src={ props.filterData('imageURL')[i] } />
+              <div key={i} className="HotSauceBox" onClick={ this.localClick } >
+                  <div className="HotSauceBox-ImageContainer">
+                    <img className="HotSauceBox-Image" src={ props.filterData('imageURL')[i] } />
                   </div>
-                  <div className="sub-container">
+                  <div className="HotSauceBox-DescriptionContainer">
                     <h2> { props.filterData('title')[i] } </h2>
                     <p className="sub-title"> { props.filterData('subtitle')[i] } </p>
                   </div>
