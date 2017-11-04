@@ -1,9 +1,8 @@
 /*
  Please feel dree to delete the below style, it is only for example. You will place all your styles in this css file.
 */
-/*
- Please feel dree to delete the below style, it is only for example. You will place all your styles in this css file.
-*/
+
+
 h1 {
   font-size: 56px;
   font-weight: 300;
@@ -11,8 +10,8 @@ h1 {
   color: #4b4a4a;
 }
 
-.title-front{
-  color:#ff0000; /* Hot Sauce Red-Following as closely to the original design*/
+.HotSauce-ListPage-MainTitle{
+  color:#ff0000; /* Hot Sauce Red-Following as closely to the original design */
   padding-left: 60px;
   font-family: Open Sans, sans-serif;
   font-weight: 700;
@@ -29,11 +28,6 @@ img {
   max-height: 100%;
   display: block;
   margin: 0 auto;
-}
-
-.HotSauceApp {
-  max-width: 960px;
-  margin: auto;
 }
 
 .HotSauceBox {
@@ -58,7 +52,7 @@ img {
   order: 2;
   overflow: hidden;
   background: #f3f3f3;
-  height: 81px;
+  height: 80px; /*I used this specific number because of the image size--I got the number while resizing everything with Chrome Inspector */
 }
 
 .HotSauceBox-DescriptionContainer h2 {
@@ -76,7 +70,7 @@ img {
 .HotSauceInformation {
   border: 1px solid #ddd;
   display: flex;
-  width: 1183px;
+  width: 1183px; /*this width helps keep the container box thinner and closer to the design */
 }
 
 .HotSauce-Title {
@@ -91,7 +85,7 @@ cursor: pointer;
 .HotSauce-Image {
   background: #dedede;
   text-align: center;
-  width: 934px;
+  width: 934px; /*without this width the image conatiner would shrink and warp the image and the design would be severly thrown off */
   height: 500px;
 }
 
