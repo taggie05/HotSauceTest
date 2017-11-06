@@ -25,10 +25,14 @@
           var props = this.props;
           var sauces = props.objectStateIndex();
           return (
-            <div className="HotSauceInformation">
-              <div >
+            <div className="HotSauceInformation"></div>
                 <div className="HotSauce-Title">
-                  <p onClick={ props.handleClick }  style={{'color':'red', 'marginTop': '-20px','font-size': '17px;'}}>&lt; Back to Hot Sauce list </p>
+                  <p 
+                  onClick={ props.handleClick }  
+                  style={{'color':'red', 'marginTop': '-20px','font-size': '17px;'}}  
+                  >
+                    &lt; Back to Hot Sauce list 
+                  </p>
                   <h1>{ props.filterData('title')[sauces] }</h1>
                 </div>
                 <div className="HotSauce-Image">
@@ -65,14 +69,18 @@
               props = this.props;
           for (i = 0; i < len; i++) {
             listArray.push(
-              <div key={i} className="HotSauceBox" onClick={ this.localClick } >
-                  <div className="HotSauceBox-ImageContainer">
-                    <img className="HotSauceBox-Image" src={ props.filterData('imageURL')[i] } />
-                  </div>
-                  <div className="HotSauceBox-DescriptionContainer">
-                    <h2> { props.filterData('title')[i] } </h2>
-                    <p className="sub-title"> { props.filterData('subtitle')[i] } </p>
-                  </div>
+              <div 
+              key={i} 
+              className="HotSauceBox" 
+              onClick={ this.localClick } 
+              >
+                <div className="HotSauceBox-ImageContainer">
+                  <img className="HotSauceBox-Image" src={ props.filterData('imageURL')[i] } />
+                </div>
+                <div className="HotSauceBox-DescriptionContainer">
+                  <h2> { props.filterData('title')[i] } </h2>
+                  <p className="sub-title"> { props.filterData('subtitle')[i] } </p>
+                </div>
               </div>
             );
           }
